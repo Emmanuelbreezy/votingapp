@@ -27,11 +27,11 @@ def user_cand_path(instance, filename):
   
 # Create your models here.
 class Election(models.Model):
-    election_name = models.CharField(max_length=50, blank=False)
-    cover_img   =  models.ImageField(upload_to = user_dir_path,blank=True)
-    url_extid         = models.SlugField(blank=True,unique=True)
+    election_name = models.CharField(max_length=150,blank=False)
+    cover_img   =  models.ImageField(max_length=250,upload_to = user_dir_path,blank=True)
+    url_extid         = models.SlugField(max_length=250,blank=True,unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    posted_by = models.CharField(max_length=50, blank=False)
+    posted_by = models.CharField(max_length=150, blank=False)
     
     def __str__(self):
         return self.election_name
@@ -39,10 +39,10 @@ class Election(models.Model):
 
 class Candidate(models.Model):
     election = models.ForeignKey(Election,null=True,on_delete=models.CASCADE)
-    candidate_name  = models.CharField(max_length=50, blank=False)
-    candidate_img   =  models.ImageField(upload_to = user_cand_path,blank=True)
+    candidate_name  = models.CharField(max_length=150, blank=False)
+    candidate_img   =  models.ImageField(max_length=250,upload_to = user_cand_path,blank=True)
     created_at      = models.DateTimeField(auto_now_add=True)
-    posted_by      = models.CharField(max_length=50, blank=False)
+    posted_by      = models.CharField(max_length=150, blank=False)
     
     def __str__(self):
         return self.candidate_name

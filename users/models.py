@@ -55,8 +55,8 @@ class UserManager(BaseUserManager):
 
 # Create your models here.
 class User(AbstractBaseUser):
-    email = models.CharField(unique=True, max_length=50,blank=False)
-    password = models.CharField(max_length=50,blank=False)
+    email = models.CharField(max_length=150,unique=True,blank=False)
+    password = models.CharField(max_length=150,blank=False)
     staff      = models.BooleanField(default=False)
     admin      = models.BooleanField(default=False)
     active     = models.BooleanField(default=True)
@@ -93,13 +93,13 @@ class User(AbstractBaseUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User,null=True, related_name="profile_user", on_delete=models.SET_NULL)
-    token = models.CharField(max_length=50, blank=True)
-    surname = models.CharField(max_length=50,blank=True,)
-    firstname = models.CharField(max_length=50,blank=True,)
-    lastname = models.CharField(max_length=50,blank=True,)
-    dob = models.DateField(blank=True)
-    localgovernment = models.CharField(max_length=100,blank=False,)
-    fingerprintID = models.CharField(max_length=100, blank=True,)
+    token = models.CharField(max_length=150,blank=True)
+    surname = models.CharField(max_length=150,blank=True,)
+    firstname = models.CharField(max_length=150,blank=True,)
+    lastname = models.CharField(max_length=150,blank=True,)
+    dob = models.DateField(max_length=150,blank=True)
+    localgovernment = models.CharField(max_length=150,blank=False,)
+    fingerprintID = models.CharField(max_length=150,blank=True,)
     photo = models.ImageField(upload_to=user_directory_path,blank=True)
     timestamp  = models.DateTimeField(auto_now_add=True)
 
